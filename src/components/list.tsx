@@ -6,6 +6,7 @@ import SubList from "./sub-list";
 type SubListItem = {
   subTitle: string;
   id: string;
+  checked: boolean;
 };
 
 type DataItem = {
@@ -15,9 +16,7 @@ type DataItem = {
 
 export default function List() {
   const [selectedTitle, setSelectedTitle] = useState<string | null>(null);
-  const listRef = useRef<HTMLDivElement | null>(null);
-
-  const data: DataItem[] = [
+  const [data, setData] = useState<DataItem[]>([
     {
       title: "Introduction to Data Structures",
       subList: [
@@ -25,14 +24,17 @@ export default function List() {
           subTitle:
             "What is Data Structure: Types, Classifications and Applications.",
           id: "what-is-data-and-classifications",
+          checked: false,
         },
         {
           subTitle: "Introduction to Data Structures",
           id: "intro-data-structure",
+          checked: false,
         },
         {
           subTitle: "Common operations on various Data Structures",
           id: "common-operations-on-data-structure",
+          checked: false,
         },
       ],
     },
@@ -87,10 +89,34 @@ export default function List() {
       title: "Advanced Data Structure",
       subList: "More complex structures like AVL trees, B-trees, etc.",
     },
-  ];
+  ]);
+  const listRef = useRef<HTMLDivElement | null>(null);
 
   const handleOnClick = (item: DataItem) => {
-    setSelectedTitle(item.title);
+    if (selectedTitle === item.title) {
+      setSelectedTitle(null);
+    } else {
+      setSelectedTitle(item.title);
+    }
+  };
+
+  const handleOnChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    itemId: string
+  ) => {
+    const updatedData = data.map((dataItem) => {
+      if (dataItem.title === selectedTitle && Array.isArray(dataItem.subList)) {
+        const updatedSubList = dataItem.subList.map((subListItem) =>
+          subListItem.id === itemId
+            ? { ...subListItem, checked: event.target.checked }
+            : subListItem
+        );
+        return { ...dataItem, subList: updatedSubList };
+      }
+      return dataItem;
+    });
+
+    setData(updatedData);
   };
 
   useEffect(() => {
@@ -129,7 +155,7 @@ export default function List() {
               </Grid>
               {selectedTitle === item.title && Array.isArray(item.subList) && (
                 <div className="lg:absolute lg:ml-4 lg:right-1/2">
-                  <SubList list={item} />
+                  <SubList list={item} handleOnChange={handleOnChange} />
                 </div>
               )}
             </Grid>
