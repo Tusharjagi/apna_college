@@ -31,7 +31,8 @@ export default function SubList({ list }: SubListProps) {
         return (
           <Grid key={index} className="ml-2 mb-1">
             <Link href={item.id}>
-              {getAlphabet(index)}. {item.subTitle}
+              <span className="font-semibold">{getAlphabet(index)}.</span>{" "}
+              {item.subTitle}
             </Link>
           </Grid>
         );

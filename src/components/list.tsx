@@ -125,7 +125,7 @@ export default function List() {
                 className="text-nowrap cursor-pointer"
                 onClick={() => handleOnClick(item)}
               >
-                {index + 1}. {item.title}
+                <span className="font-semibold">{index + 1}.</span> {item.title}
               </Grid>
               {selectedTitle === item.title && Array.isArray(item.subList) && (
                 <div className="lg:absolute lg:ml-4 lg:right-1/2">
