@@ -29,8 +29,8 @@ const details: Record<string, DetailData> = {
     youTubeUrl: "https://www.youtube.com/embed/9IZYqostl2M?si=7lCmSa2t0C1PGGnY",
   },
   "intro-data-structure": {
-    leetCodeUrl: "",
-    codeForceUrl: "",
+    leetCodeUrl: "https://leetcode.com",
+    codeForceUrl: "https://codeforce.com",
     article: {
       description: `The choice of a good data structure makes it possible to perform a variety of critical operations effectively. An efficient data structure also uses minimum memory space and execution time to process the structure. A data structure is not only used for organising the data. It is also used for processing, retrieving, and storing data. There are different basic and advanced types of data structures that are used in almost every program or software system that has been developed. So we must have good knowledge of data structures.
 
