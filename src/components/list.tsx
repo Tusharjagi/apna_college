@@ -40,7 +40,14 @@ export default function List() {
     },
     {
       title: "Array Data Structure",
-      subList: "A collection of elements identified by index or key.",
+      subList: [
+        {
+          subTitle:
+            "Search, Insert, and Delete in an Unsorted Array | Array Operations",
+          id: "search-insert-delete-in-unsorted-array",
+          checked: false,
+        },
+      ],
     },
     {
       title: "Linked List Data Structure",
