@@ -34,11 +34,8 @@ export default function SubList({ list, handleOnChange }: SubListProps) {
     <Grid className="p-2 shadow-md rounded-md">
       {list.subList.map((item, index) => {
         return (
-          <Grid
-            key={index}
-            className="ml-2 mb-1 mg:flex lg:flex md:gap-8 lg:gap-8"
-          >
-            <Grid>
+          <Grid key={index} className="ml-2 mb-1 flex gap-8 justify-between">
+            <Grid className="w-[80%]">
               <Link href={item.id}>
                 <span className="font-semibold">{getAlphabet(index)}.</span>{" "}
                 {item.subTitle}
